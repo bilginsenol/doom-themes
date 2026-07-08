@@ -54,7 +54,8 @@ Can be an integer to determine the exact padding."
   :background-mode 'dark
 
   ;; name        default   256           16
-  (
+  ((bg         '("#161616" "black"       "black"        )) ; gray_100, 0
+   (fg         '("#e0e0e0" "#d7d7d7"     "white"        )) ; gray_20, 188
    
    ;; These are off-color variants of bg/fg, used primarily for `solaire-mode',
    ;; but can also be useful as a basis for subtle highlights (e.g. for hl-line
@@ -63,12 +64,10 @@ Can be an integer to determine the exact padding."
    (bg-alt     '("#060606" "black"       "black"        )) ;~gray_110, 0
    (fg-alt     '("#8d8d8d" "#878787"     "brightblack"  )) ; gray_50, 102
 
-
    ;; These should represent a spectrum from bg to fg, where base0 is a starker
    ;; bg and base8 is a starker fg. For example, if bg is light grey and fg is
    ;; dark grey, base0 should be white and base8 should be black.
    (base0      '("#0e0e0e" "black"       "black"        )) ;~gray_105, 0
-   (bg         '("#161616" "black"       "black"        )) ; gray_100, 0
    (base1      '("#1e1e1e" "black"       "black"        )) ;~gray_95, 0
    (base2      '("#262626" "black"       "brightblack"  )) ; gray_90, 0
    (base3      '("#393939" "#5f5f5f"     "brightblack"  )) ; gray_80, 59
@@ -76,7 +75,6 @@ Can be an integer to determine the exact padding."
    (base5      '("#6f6f6f" "#5f5f5f"     "brightblack"  )) ; gray_60, 59
    (base6      '("#a8a8a8" "#afafaf"     "brightblack"  )) ; gray_40, 145
    (base7      '("#c6c6c6" "#c0c0c0"     "brightwhite"  )) ; gray_30, 7
-   (fg         '("#e0e0e0" "#d7d7d7"     "white"        )) ; gray_20, 188
    (base8      '("#f4f4f4" "#ffffff"     "white"        )) ; gray_10, 15
 
    (grey       base2)
@@ -114,6 +112,7 @@ Can be an integer to determine the exact padding."
    ;; These are the "universal syntax classes" that doom-themes establishes.
    ;; These *must* be included in every doom themes, or your theme will throw an
    ;; error, as they are used in the base theme defined in doom-themes-base.
+   ;MAYBE: swap functions and variables color
    (highlight      blue)
    (vertical-bar   (doom-darken base1 0.1))
    (selection      dark-blue)

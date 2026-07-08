@@ -1,11 +1,15 @@
-;;; doom-one-light-theme.el --- inspired by Atom One Light -*- lexical-binding: t; no-byte-compile: t; -*-
+;;; doom-carbon-light-theme.el --- inspired by IBM Carbon Design System -*- lexical-binding: t; no-byte-compile: t; -*-
 ;;
-;; Added: July 31, 2017 (#96)
-;; Author: ztlevi <https://github.com/ztlevi>
-;; Maintainer: Henrik Lissner <https://github.com/hlissner>
-;; Source: https://github.com/atom/one-light-ui
+;; Added: Jul 8, 2026
+;; Author: B. Bilgin Senol <https://github.com/bilginsenol>
+;; Maintainer: B. Bilgin Senol <https://github.com/bilginsenol>
+;; Source: https://carbondesignsystem.com/elements/color/overview/#resources
 ;;
 ;;; Commentary:
+;;
+;; IBM Carbon Design System ported to doom-themes.
+;; Color codes are baed on "IBM_Colors_RGB_HEX_v2.1_REFERENCE.pdf"
+;;
 ;;; Code:
 
 (require 'doom-themes)
@@ -14,72 +18,87 @@
 ;;
 ;;; Variables
 
-(defgroup doom-one-light-theme nil
-  "Options for the `doom-one-light' theme."
+(defgroup doom-carbon-light-theme nil
+  "Options for the `doom-carbon-light' theme."
   :group 'doom-themes)
 
-(defcustom doom-one-light-brighter-modeline nil
+(defcustom doom-carbon-light-brighter-modeline nil
   "If non-nil, more vivid colors will be used to style the mode-line."
-  :group 'doom-one-light-theme
+  :group 'doom-carbon-light-theme
   :type 'boolean)
 
-(defcustom doom-one-light-brighter-comments nil
+(defcustom doom-carbon-light-brighter-comments nil
   "If non-nil, comments will be highlighted in more vivid colors."
-  :group 'doom-one-light-theme
+  :group 'doom-carbon-light-theme
   :type 'boolean)
 
-(defcustom doom-one-light-padded-modeline doom-themes-padded-modeline
+(defcustom doom-carbon-light-padded-modeline doom-themes-padded-modeline
   "If non-nil, adds a 4px padding to the mode-line.
 Can be an integer to determine the exact padding."
-  :group 'doom-one-light-theme
+  :group 'doom-carbon-light-theme
   :type '(choice integer boolean))
 
 
 ;;
 ;;; Theme definition
 
-(def-doom-theme doom-one-light
-  "A light theme inspired by Atom One Light."
-  :family 'doom-one
+(def-doom-theme doom-carbon-light
+  "A light theme inspired by IBM Carbon Design System."
+  :family 'doom-carbon
   :background-mode 'light
 
   ;; name        default   256       16
-  ((bg         '("#fafafa" "white"   "white"        ))
-   (fg         '("#383a42" "#424242" "black"        ))
+  ((bg         '("#f4f4f4" "#ffffff"     "white"        )) ; gray_10, 15
+   (fg         '("#262626" "black"       "brightblack"  )) ; gray_90, 0
 
    ;; These are off-color variants of bg/fg, used primarily for `solaire-mode',
    ;; but can also be useful as a basis for subtle highlights (e.g. for hl-line
    ;; or region), especially when paired with the `doom-darken', `doom-lighten',
    ;; and `doom-blend' helper functions.
-   (bg-alt     '("#f0f0f0" "white"   "white"        ))
-   (fg-alt     '("#c6c7c7" "#c7c7c7" "brightblack"  ))
+   (bg-alt     '("#eaeaea" "#d7d7d7"     "white"        )) ; ~gray_15, 188
+   (fg-alt     '("#525252" "#5f5f5f"     "brightblack"  )) ; gray_70, 59
 
    ;; These should represent a spectrum from bg to fg, where base0 is a starker
    ;; bg and base8 is a starker fg. For example, if bg is light grey and fg is
    ;; dark grey, base0 should be white and base8 should be black.
-   (base0      '("#f0f0f0" "#f0f0f0" "white"        ))
-   (base1      '("#e7e7e7" "#e7e7e7" "brightblack"  ))
-   (base2      '("#dfdfdf" "#dfdfdf" "brightblack"  ))
-   (base3      '("#c6c7c7" "#c6c7c7" "brightblack"  ))
-   (base4      '("#9ca0a4" "#9ca0a4" "brightblack"  ))
-   (base5      '("#383a42" "#424242" "brightblack"  ))
-   (base6      '("#202328" "#2e2e2e" "brightblack"  ))
-   (base7      '("#1c1f24" "#1e1e1e" "brightblack"  ))
-   (base8      '("#1b2229" "black"   "black"        ))
+   (base0      '("#fefefe" "#ffffff"     "white"        )) ;~gray_5, 15
+   (base1      '("#e0e0e0" "#d7d7d7"     "white"        )) ; gray_20, 188
+   (base2      '("#d3d3d3" "#d7d7d7"     "white"        )) ;~gray_25, 188
+   (base3      '("#c6c6c6" "#c0c0c0"     "brightwhite"  )) ; gray_30, 7
+   (base4      '("#a8a8a8" "#afafaf"     "brightblack"  )) ; gray_40, 145
+   (base5      '("#8d8d8d" "#878787"     "brightblack"  )) ; gray_50, 102
+   ;; (base5      '("#6f6f6f" "#5f5f5f"     "brightblack"  )) ; gray_60, 59
+   (base6      '("#464646" "#5f5f5f"     "brightblack"  )) ;~gray_75, 59
+   (base7      '("#303030" "#5f5f5f"     "brightblack"  )) ; gray_85, 59
+   (base8      '("#161616" "black"       "black"        )) ; gray_100, 0
+   ;; (base7      '("#1e1e1e" "black"       "black"        )) ;~gray_95, 0
 
-   (grey       base4)
-   (red        '("#e45649" "#e45649" "red"          ))
-   (orange     '("#da8548" "#dd8844" "brightred"    ))
-   (green      '("#50a14f" "#50a14f" "green"        ))
-   (teal       '("#4db5bd" "#44b9b1" "brightgreen"  ))
-   (yellow     '("#986801" "#986801" "yellow"       ))
-   (blue       '("#4078f2" "#4078f2" "brightblue"   ))
-   (dark-blue  '("#a0bcf8" "#a0bcf8" "blue"         ))
-   (magenta    '("#a626a4" "#a626a4" "magenta"      ))
-   (violet     '("#b751b6" "#b751b6" "brightmagenta"))
-   (cyan       '("#0184bc" "#0184bc" "brightcyan"   ))
-   (dark-cyan  '("#005478" "#005478" "cyan"         ))
+   (grey       base5)
+   (red        '("#ea363f" "#d75f5f" "red"          )) ;~red_55,    167
+   (orange     '("#ff832b" "#ff8700" "brightred"    )) ;orange_40,  208
+   (green      '("#24a148" "#00af5f" "green"        )) ;green_50,   35
+   (teal       '("#08bdba" "#00afaf" "brightgreen"  )) ;teal_40,    37
+   (yellow     '("#f1c21b" "#ffaf00" "yellow"       )) ;yellow_30,  214
+   (blue       '("#0f62fe" "#005fff" "brightblue"   )) ;blue_60,    27
+   (dark-blue  '("#002d9c" "#0000af" "blue"         )) ;blue_80,    19
+   (magenta    '("#d02670" "#d7005f" "brightmagenta")) ;magenta_60, 161
+   (violet     '("#8a3ffc" "#875fff" "magenta"      )) ;purple_60,  99
+   (cyan       '("#22A2F4" "#00afff" "brightcyan"   )) ;~cyan_45,    39
+   (dark-cyan  '("#00539a" "#005f87" "cyan"         )) ;cyan_70,    24
 
+   ;;; some color variants
+   (red50        '("#fa4d56" "#ff5f5f" "red"          )) ;red_50, 203
+   (red60        '("#da1e28" "#d70000" "red"          )) ;red_60, 160
+   (red70        '("#a2191f" "#af0000" "red"          )) ;red_70, 124
+   (green40      '("#42be65" "#5faf5f" "green"        )) ;green_40,   71
+   (green60      '("#198038" "#00875f" "green"        )) ;green_60,   29
+   (magenta50    '("#ee5396" "#ff5f87" "brightmagenta")) ;magenta_50, 204
+   (purple50     '("#a56eff" "#af5fff" "magenta"      )) ;purple_50,  135
+   (cyan30       '("#82cfff" "#87d7ff" "cyan"         )) ;cyan_30,  117
+   (cyan40       '("#33b1ff" "#5fafff" "brightcyan"   )) ;cyan_40,    75
+   (cyan50       '("#1192e8" "#0087d7" "brightcyan"   )) ;cyan_50,    32
+   (cyan60       '("#0072c3" "#005faf" "cyan"         )) ;cyan_60,    25
+   
    ;; These are the "universal syntax classes" that doom-themes establishes.
    ;; These *must* be included in every doom themes, or your theme will throw an
    ;; error, as they are used in the base theme defined in doom-themes-base.
@@ -87,16 +106,16 @@ Can be an integer to determine the exact padding."
    (vertical-bar   (doom-darken base2 0.1))
    (selection      dark-blue)
    (builtin        magenta)
-   (comments       (if doom-one-light-brighter-comments cyan base4))
+   (comments       (if doom-carbon-light-brighter-comments cyan base5))
    (doc-comments   (doom-darken comments 0.15))
    (constants      violet)
    (functions      magenta)
-   (keywords       red)
-   (methods        cyan)
+   (keywords       blue)
+   (methods        (doom-darken magenta 0.4))
    (operators      blue)
-   (type           yellow)
+   (type           (doom-darken orange 0.15))
    (strings        green)
-   (variables      (doom-darken magenta 0.36))
+   (variables      cyan)
    (numbers        orange)
    (region         `(,(doom-darken (car bg-alt) 0.1) ,@(doom-darken (cdr base0) 0.3)))
    (error          red)
@@ -111,23 +130,23 @@ Can be an integer to determine the exact padding."
    (modeline-fg              fg)
    (modeline-fg-alt          (doom-blend
                               violet base4
-                              (if doom-one-light-brighter-modeline 0.5 0.2)))
-   (modeline-bg              (if doom-one-light-brighter-modeline
+                              (if doom-carbon-light-brighter-modeline 0.5 0.2)))
+   (modeline-bg              (if doom-carbon-light-brighter-modeline
                                  (doom-darken base2 0.05)
                                base1))
-   (modeline-bg-alt          (if doom-one-light-brighter-modeline
+   (modeline-bg-alt          (if doom-carbon-light-brighter-modeline
                                  (doom-darken base2 0.1)
                                base2))
    (modeline-bg-inactive     (doom-darken bg 0.1))
    (modeline-bg-alt-inactive `(,(doom-darken (car bg-alt) 0.05) ,@(cdr base1)))
 
    (-modeline-pad
-    (when doom-one-light-padded-modeline
-      (if (integerp doom-one-light-padded-modeline) doom-one-light-padded-modeline 4))))
+    (when doom-carbon-light-padded-modeline
+      (if (integerp doom-carbon-light-padded-modeline) doom-carbon-light-padded-modeline 4))))
 
   ;;;; Base theme face overrides
   (((font-lock-comment-face &override)
-    :background (if doom-one-light-brighter-comments base0 'unspecified))
+    :background (if doom-carbon-light-brighter-comments base0 'unspecified))
    ((font-lock-doc-face &override) :slant 'italic)
    ((line-number &override) :foreground (doom-lighten base4 0.15))
    ((line-number-current-line &override) :foreground base8)
@@ -138,7 +157,7 @@ Can be an integer to determine the exact padding."
     :background modeline-bg-inactive :foreground modeline-fg-alt
     :box (if -modeline-pad `(:line-width ,-modeline-pad :color ,modeline-bg-inactive)))
    (mode-line-emphasis
-    :foreground (if doom-one-light-brighter-modeline base8 highlight))
+    :foreground (if doom-carbon-light-brighter-modeline base8 highlight))
    (shadow :foreground base4)
    (tooltip :background base1 :foreground fg)
 
@@ -149,7 +168,7 @@ Can be an integer to determine the exact padding."
    (css-property             :foreground green)
    (css-selector             :foreground blue)
    ;;;; doom-modeline
-   (doom-modeline-bar :background (if doom-one-light-brighter-modeline modeline-bg highlight))
+   (doom-modeline-bar :background (if doom-carbon-light-brighter-modeline modeline-bg highlight))
    ;;;; ediff <built-in>
    (ediff-current-diff-A        :foreground red   :background (doom-lighten red 0.8))
    (ediff-current-diff-B        :foreground green :background (doom-lighten green 0.8))
@@ -203,4 +222,4 @@ Can be an integer to determine the exact padding."
   ()
   )
 
-;;; doom-one-light-theme.el ends here
+;;; doom-carbon-light-theme.el ends here
