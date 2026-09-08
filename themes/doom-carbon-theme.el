@@ -142,7 +142,7 @@ Can be an integer to determine the exact padding."
    (modeline-fg-alt          base5)
    (modeline-bg              (if doom-carbon-brighter-modeline
                                  (doom-darken blue 0.45)
-                               (doom-darken bg-alt 0.1)))
+                               (doom-darken bg-alt 0.0)))
    (modeline-bg-alt          (if doom-carbon-brighter-modeline
                                  (doom-darken blue 0.475)
                                `(,(doom-darken (car bg-alt) 0.15) ,@(cdr bg))))
@@ -209,9 +209,9 @@ Can be an integer to determine the exact padding."
     :background (doom-blend vc-deleted base0 0.25)
     :extend t)
    ;;;; org
-   (org-block :background bg-alt :extend t)
+   (org-block :background (doom-darken bg 0.18) :extend t)
    ;;;; markdown
-   (markdown-code-face :background bg-alt :extend t)
+   (markdown-code-face :background (doom-darken bg 0.18) :extend t)
    ;;;; tab-bar
    (tab-bar-tab :foreground fg :background bg :underline `(:color ,blue :style line :position 0))
    )
